@@ -155,4 +155,4 @@ Requirements:
 
 
 
-Only these functions are allowed: write, printf, putchar, puts, malloc, free
+Only these functions are allowed: write, printf, putchar, putfree
