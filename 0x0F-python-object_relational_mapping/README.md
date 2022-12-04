@@ -1,108 +1,168 @@
 # Python - Object-relational mapping
 
-# Before you start…
-Please make sure your MySQL server is in 8.0 -> <a href = "https://alx-intranet.hbtn.io/projects/272">How to install MySQL 8.0 in Ubuntu 20.04</a>
+In this project, I learned about how object-relational mapping is used for
+database scripting. I became familiar with using MySQLdb and SQLAlchemy to
+query, create, edit, and delete tables in MySQL.
 
-# Background Context
-In this project, you will link two amazing worlds: Databases and Python!
-In the first part, you will use the module MySQLdb to connect to a MySQL database and execute your SQL queries.
-In the second part, you will use the module SQLAlchemy (don’t ask me how to pronounce it…) an Object Relational Mapper (ORM).
-The biggest difference is: no more SQL queries! Indeed, the purpose of an ORM is to abstract the storage to the usage. With an ORM, your biggest concern will be “What can I do with my objects” and not “How this object is stored? where? when?”. You won’t write any SQL queries only Python code. Last thing, your code won’t be “storage type” dependent. You will be able to change your storage easily without re-writing your entire project.
+## Tests :heavy_check_mark:
 
-# Resources
-* <a href = "https://www.fullstackpython.com/object-relational-mappers-orms.html">Object-relational mappers</a>
-* <a href = "https://mysqlclient.readthedocs.io/">mysqlclient/MySQLdb documentation </a> please don't pay attention to msql
-* <a href = "https://www.mikusa.com/python-mysql-docs/index.html">MySQLdb tutorial</a>
-* <a href = "https://docs.sqlalchemy.org/en/13/orm/tutorial.html">SQLAlchemy tutorial</a>
-* <a href = "https://docs.sqlalchemy.org/en/13/">SQLAlchemy</a>
-* <a href = "https://github.com/PyMySQL/mysqlclient">mysqlclient/MySQLdb</a>
-* <a href = "https://www.youtube.com/watch?v=woKYyhLCcnU">Introduction to SQLAlchemy</a>
-* <a href = "https://www.youtube.com/playlist?list=PLXmMXHVSvS-BlLA5beNJojJLlpE0PJgCW">Flask SQLAlchemy</a>
-* <a href "http://alextechrants.blogspot.com/2013/11/10-common-stumbling-blocks-for.html">10 common stumbling blocks for SQLAlchemy newbies</a>
-* <a href = "https://www.pythonsheets.com/notes/python-sqlalchemy.html">Python SQLAlchemy Cheatsheet</a>
-* <a href = "https://auth0.com/blog/sqlalchemy-orm-tutorial-for-python-developers/">SQLAlchemy ORM Tutorial for Python Developers</a>Warning: This tutorial is with PostgreSQL, but the concept of SQLAlchemy is the same with MySQL
-* <a href = "https://overiq.com/sqlalchemy-101/">SQLAlchemy Tutorial</a>
+* [tests](./tests): Folder of SQL and Python scripts for setting up test tables
+for all files. Provided by Holberton School.
 
-# Learning Objectives
-At the end of this project, you are expected to be able to <a href = "https://fs.blog/feynman-learning-technique/">explain to anyone</a>without the help of Google:
+## Tasks :page_with_curl:
 
-# General
-* Why Python programming is awesome
-* How to connect to a MySQL database from a Python script
-* How to SELECT rows in a MySQL table from a Python script
-* How to INSERT rows in a MySQL table from a Python script
-* What ORM means
-* How to map a Python Class to a MySQL table
+* **0. Get all states**
+  * [0-select_states.py](./0-select_states.py): Python script that uses MySQLdb
+  to list all states in the database `hbtn_0e_0_usa`.
+  * Usage: `./0-select_states.py <mysql username> <mysql password>
+  <database name>`.
+  * Results are ordered by ascending `states.id`.
 
-# Requirements
+* **1. Filter states**
+  * [1-filter_states.py](./1-filter_states.py): Python script that uses MySQLdb
+  to list all states with names starting with `N` in the database `hbtn_0e_0_usa`.
+  * Usage: `./1-filter_states.py <mysql username> <mysql password>
+  <database name>`.
+  * Results are ordered by ascending `states.id`.
 
-#General
-* Allowed editors: vi, vim, emacs
-* All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)
-* Your files will be executed with MySQLdb version 2.0.x
-* Your files will be executed with SQLAlchemy version 1.4.x
-* All your files should end with a new line
-* The first line of all your files should be exactly #!/usr/bin/python3
-* A README.md file, at the root of the folder of the project, is mandatory
-* Your code should use the pycodestyle (version 2.8.*)
-* All your files must be executable
-* The length of your files will be tested using wc
-* All your modules should have a documentation (python3 -c 'print(__import__("my_module").__doc__)')
-* All your classes should have a documentation (python3 -c 'print(__import__("my_module").MyClass.__doc__)')
-* All your functions (inside and outside a class) should have a documentation (python3 -c 'print(__import__("my_module").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)')
-* A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
-* You are not allowed to use execute with sqlalchemy
+* **2. Filter states by user input**
+  * [2-my_filter_states.py](./2-my_filter_states.py): Python script that uses
+  MySQLdb to display all values matching a given name in the `states` table of
+  the database `hbtn_0e_0_usa`.
+  * Usage: `./2-my_filter_states.py <mysql username> <mysql password>
+  <database name> <state name searched>`.
+  * Results are ordered by ascending `states.id`.
+  * Uses string formatting to construct the SQL query.
 
-# Tasks
-# Get all states
-Write a script that lists all states from the database hbtn_0e_0_usa:
-* Your script should take 3 arguments: mysql username, mysql password and database name (no argument validation needed)
-* You must use the module MySQLdb (import MySQLdb)
-* Your script should connect to a MySQL server running on localhost at port 3306
-* Results must be sorted in ascending order by states.id
-* Results must be displayed as they are in the example below
-* Your code should not be executed when imported
+* **3. SQL Injection...**
+  * [3-my_safe_filter_states.py](./3-my_safe_filter_states.py): Python script
+  that uses MySQLdb to display all values matching a given name in the `states`
+  table of the database `hbtn_0e_0_usa`.
+  * Usage: `./3-my_safe_filter_states.py <mysql username> <mysql password>
+  <database name> <state name searched>`.
+  * Results are ordered by ascending `states.id`.
+  * Safe from SQL injections.
 
-# Filter states
-Write a script that lists all states with a name starting with N (upper N) from the database hbtn_0e_0_usa:
-* Your script should take 3 arguments: mysql username, mysql password and database name (no argument validation needed)
-* You must use the module MySQLdb (import MySQLdb)
-* Your script should connect to a MySQL server running on localhost at port 3306
-* Results must be sorted in ascending order by states.id
-* Results must be displayed as they are in the example below
-* Your code should not be executed when imported
+* **4. Cities by states**
+  * [4-cities_by_state.py](./4-cities_by_state.py): Python script that uses
+  MySQLdb to list all cities from the database `hbtn_0e_4_usa`.
+  * Usage: `./4-cities_by_state.py <mysql username> <mysql password>
+  <database name>`.
+  * Results are ordered by ascending `cities.id`.
 
-# Filter states by user input
-Write a script that takes in an argument and displays all values in the states table of hbtn_0e_0_usa where name matches the argument.
-* Your script should take 4 arguments: mysql username, mysql password, database name and state name searched (no argument validation needed)
-* You must use the module MySQLdb (import MySQLdb)
-* Your script should connect to a MySQL server running on localhost at port 3306
-* You must use format to create the SQL query with the user input
-* Results must be sorted in ascending order by states.id
-* Results must be displayed as they are in the example below
-* Your code should not be executed when imported
+* **5. All cities by state**
+  * [5-filter_cities.py](./5-filter_cities.py): Python script that uses MySQLdb
+  to list all cities of a given state in the database `hbtn_0e_4_usa`.
+  * Usage: `./5-filter_cities.py <mysql username> <mysql password>
+  <database name>`.
+  * Results are sorted by ascending `cities.id`.
 
-# SQL Injection...
-Wait, do you remember the previous task? Did you test "Arizona'; TRUNCATE TABLE states ; SELECT * FROM states WHERE name = '" as an input?
+* **6. First state model**
+  * [model_state.py](./model_state.py): Python module defining a class `State`
+  that inherits from SQLAlchemy `Base` and links to the MySQL table `states`.
 
-# Cities by states
-Write a script that lists all cities from the database hbtn_0e_4_usa
-* Your script should take 3 arguments: mysql username, mysql password and database name
-* You must use the module MySQLdb (import MySQLdb)
-* Your script should connect to a MySQL server running on localhost at port 3306
-* Results must be sorted in ascending order by cities.id
-* You can use only execute() once
-* Results must be displayed as they are in the example below
-* Your code should not be executed when imported
+* **7. All states via SQLAlchemy**
+  * [7-model_state_fetch_all.py](./7-model_state_fetch_all.py): Python script
+  that uses SQLAlchemy to list all `State` objects from the database
+  `hbtn_0e_6_usa`.
+  * Usage: `./7-model_state_fetch_all.py <mysql username> <mysql password>
+  <database name>`.
+  * Results are sorted by ascending `states.id`.
 
-# All cities by state
-Write a script that takes in the name of a state as an argument and lists all cities of that state, using the database hbtn_0e_4_usa
-* Your script should take 4 arguments: mysql username, mysql password, database name and state name (SQL injection free!)
-* You must use the module MySQLdb (import MySQLdb)
-* Your script should connect to a MySQL server running on localhost at port 3306
-* Results must be sorted in ascending order by cities.id
-* You can use only execute() once
-* The results must be displayed as they are in the example below
-* Your code should not be executed when imported
+* **8. First state**
+  * [8-model_state_fetch_first.py](./8-model_state_fetch_first.py): Python script
+  that uses SQLAlchemy to print the first `State` object from the database
+  `hbtn_0e_6_usa`, ordered by `states.id`.
+  * Usage: `./8-model_state_fetch_first.py <mysql username> <mysql password>
+  <database name>`.
+  * If the `states` table is empty, prints `Nothing`.
 
+* **9. Contains `a`**
+  * [9-model_state_filter_a.py](./9-model_state_filter_a.py): Python script
+  that uses SQLAlchemy to list all `State` objects that contain the letter `a`
+  in the database `hbtn_0e_6_usa`.
+  * Usage: `./9-model_state_filter_a.py <mysql username> <mysql password>
+  <database name>`.
+  * Results are ordered by ascending `states.id`.
+
+* **10. Get a state**
+  * [10-model_state_my_get.py](./10-model_state_my_get.py): Python script that
+  uses SQLAlchemy to print the `id` of the `State` object with name matching that
+  passed as argument in the database `hbtn_0e_6_usa`.
+  * Usage: `./10-model_state_my_get.py <mysql username> <mysql password>
+  <database name> <state searched name>`.
+  * Displays the `id` of the matched `State`.
+  * If no match is found, prints `Not found`.
+
+* **11. Add a new state**
+  * [11-model_state_insert.py](./11-model_state_insert.py): Python script that
+  uses SQLAlchemy to add the `State` object "Louisiana" to the database
+`hbtn_0e_6_usa`.
+  * Usage: `./11-model_state_insert.py <mysql username> <mysql password>
+  <database name>`.
+  * Prints the `id` of the new `State` after creation.
+
+* **12. Update a state**
+  * [12-model_state_update_id_2.py](./12-model_state_update_id_2.py): Python
+  script that uses SQLAlchemy to change the name of the `State` object with
+  `id = 2` in the database `hbtn_0e_6_usa` to "New Mexico".
+  * Usage: `./12-model_state_update_id_2.py <mysql username> <mysql password>
+  <database name>`.
+
+* **13. Delete states**
+  * [13-model_state_delete_a.py](./13-model_state_delete_a.py): Python script
+  that uses SQLAlchemy to delete all `State` objects with a name containing the
+  letter `a` from the database `hbtn_0e_6_usa`.
+  * Usage: `./13-model_state_delete_a.py <mysql username> <mysql password>
+  <database name>`.
+
+* **14. Cities in state**
+  * [model_city.py](./model_city.py): Python module defining a class `City`
+  that inherits from SQLAlchemy `Base` and links to the MySQL table `cities`.
+    * Includes class attribute `state_id` that is a foreign key to
+    `states.id`.
+  * [14-model_city_fetch_by_state.py](./14-model_city_fetch_by_state.py):
+  Python script that uses SQLAlchemy to list all `City` objects in the database
+  `hbtn_0e_14_usa`.
+  * Usage: `./14-model_city_fetch_by_state.py <mysql username> <mysql password>
+  <database name>`.
+  * Results are sorted by ascending `cities.id`.
+
+* **15. City relationship**
+  * [relationship_state.py](./relationship_state.py): Python module defining a
+  class `State` that inherits from SQLAlchemy `Base` and links to the MySQL table
+  `states`.
+    * Identical to the `State` class defined in [model_state.py](./model_state.py).
+    * Includes class attribute `classes` that represents a relationship with
+    the class `City`. If the `State` object is deleted, all linked `City` objects
+    are also deleted. `State` objects are backreferenced to `City` objects as
+    `state`.
+  * [relationship_city.py](./relationship_city.py): Python module defining a
+  class `City` that inherits from SQLAlchemy `Base` and links to the MySQL table
+  `cities`.
+    * Identical to the `City` class defined in [model_city.py](./model_city.py).
+  * [100-relationship_states_cities.py](./100-relationship_states_cities.py):
+  Python script that uses SQLAlchemy to add the `State` "California" with `City`
+  "San Francisco" to the database `hbtn_0e_100_usa`.
+  * Usage: `./100-relationship_states_cities.py <mysql username>
+  <mysql password> <database name>`.
+  * Uses the `cities` relationship for all `State` objects.
+
+* **16. List relationship**
+  * [101-relationship_states_cities_list.py](./101-relationship_states_cities_list.py):
+  Python script that uses SQLAlchemy to list all `State` and corresponding
+  `City` objects in the database `hbtn_0e_101_usa`.
+  * Usage: `./101-relationship_states_cities_list.py <mysql username>
+  <mysql password> <database name>`.
+  * Uses the `cities` relationship for all `State` objects.
+  * Results are sorted by ascending `states.id` and `cities.id`.
+
+* **17. List city**
+  * [102-relationship_cities_states_list.py](./102-relationship_cities_states_list.py):
+  Python script that uses SQLAlchemy to list all `City` objects from the database
+  `hbtn_0e_101_usa`.
+  * Usage: `./102-relationship_cities_states_list.py <mysql username>
+  <mysql password> <database name>`.
+  * Uses the `state` relationship to access the `State` objects linked to `City` objects.
+  * Results are sorted by ascending `cities.id`.
 
